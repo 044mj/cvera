@@ -1,13 +1,11 @@
 Type: Package
 Package: cvera
-Title: Utility Functions For Use With mastertb Dataset
+Title: Utility Functions For Use With bTB Testing Datasets
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+          person("Jamie", "Madden", email = "jamie.madden@ucd.ie",
+                          role = c("aut", "cre"),
+                          comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -20,3 +18,5 @@ Imports:
     lubridate
 URL: https://github.com/044mj/cvera
 BugReports: https://github.com/044mj/cvera/issues
+
+

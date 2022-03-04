@@ -6,7 +6,12 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of cvera is to …
+------------------------------------------------------------------------
+
+`cvera` is an R package with a collection of utility R functions that
+are useful to explore the bTB datasets, primarily `master_tb`.
+
+------------------------------------------------------------------------
 
 ## Installation
 
@@ -28,29 +33,13 @@ library(cvera)
 bd_test <- bd_during(bd_test, "2017-02-27")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(tidyverse)
+# if using readr::read_csv() they use first 1000 rows to guess type. 
+# If the first 1,000 are missing, it will default to logical. GIF variables are missing in the first 1000
+#because it only came in during May 2019 so include col_types for these variables:
+master_tb <- read_csv("N:\\data\\tb\\master_tb_data_jamie_m\\year_2021\\master_tb_14_Apr_2021.csv", 
+                          col_types = cols(.default = "?", 
+                                           gif8d_actual_date = col_date(), 
+                                           gif_cases = col_number()))
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
