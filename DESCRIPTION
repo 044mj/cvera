@@ -18,3 +18,5 @@ Imports:
     data.table,
     dplyr,
     lubridate
+URL: https://github.com/044mj/cvera
+BugReports: https://github.com/044mj/cvera/issues
