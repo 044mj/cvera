@@ -59,7 +59,7 @@ cases <- all_cases_per_year(master_tb, drop_years = c(2022))
 ```
 
 
-
+results in
 
 
 
