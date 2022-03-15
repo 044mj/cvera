@@ -9,7 +9,7 @@
 ------------------------------------------------------------------------
 
 `cvera` is an R package with a collection of utility R functions that
-are useful to explore the bTB datasets, primarily `master_tb`.
+can be useful to explore Irish bTB datasets collated in CVERA.
 
 ------------------------------------------------------------------------
 
@@ -43,3 +43,5 @@ master_tb <- read_csv("N:\\data\\tb\\master_tb_data_jamie_m\\year_2021\\master_t
                                            gif8d_actual_date = col_date(), 
                                            gif_cases = col_number()))
 ```
+
+, primarily `master_tb`.
