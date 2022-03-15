@@ -61,7 +61,7 @@ cases <- all_cases_per_year(master_tb, drop_years = c(2022))
 
 results in
 
-```{r example_ouput, eval = TRUE}
+```{r example_ouput, eval = TRUE, include=FALSE}
 cases_example <- readRDS("data/cases_example.rds")
 cases_example
 ```
