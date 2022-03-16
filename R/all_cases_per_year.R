@@ -83,6 +83,7 @@ all_cases_per_year <- function(df, drop_years = NA, return_plot_table = c("both"
 
   min_year <- min(all_cases_plot_df$year)
   max_year <- max(all_cases_plot_df$year)
+  max_val <- max(all_cases_plot_df$value, na.rm = TRUE)
 
 
   all_cases_plot <- all_cases_plot_df %>%
@@ -93,7 +94,9 @@ all_cases_per_year <- function(df, drop_years = NA, return_plot_table = c("both"
     labs(x = "Year", y = "Number of cases", title =
            paste0("bTB cases by year (", min_year, " - ", max_year, ")")) +
     theme(axis.text = element_text(size = 12, face = "bold", colour = "black"),
-          axis.title = element_text(size = 14, face = "bold", colour = "black"))
+          axis.title = element_text(size = 14, face = "bold", colour = "black")) +
+    scale_y_continuous(breaks = seq(0, max_val, by = 5000))
+
 
   #https://stackoverflow.com/questions/4683405/function-default-arguments-and-named-values
   plot_or_table <- match.arg(return_plot_table)
