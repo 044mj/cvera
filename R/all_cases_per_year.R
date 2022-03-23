@@ -24,6 +24,8 @@
 #' @importFrom lubridate year
 #' @importFrom purrr reduce
 #' @importFrom tidyr pivot_longer
+#' @importFrom knitr kable
+#' @importFrom kableExtra kable_styling
 
 
 all_cases_per_year <- function(df, drop_years = NA, return_plot_table = c("both",
@@ -105,7 +107,8 @@ all_cases_per_year <- function(df, drop_years = NA, return_plot_table = c("both"
   } else if (return_plot_table == "plot only") {
     return(all_cases_plot)
   } else if (return_plot_table == "table only") {
-    return(all_cases_table)
+    return(kable(all_cases_table, format = "html", escape = FALSE, row.names = FALSE) %>%
+             kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE))
   }
   #plot_or_table <- match.arg(return_plot_table)
   #return(plot_or_table)

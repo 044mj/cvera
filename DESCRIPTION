@@ -17,6 +17,8 @@ Imports:
     dplyr,
     ggplot2,
     ggsci,
+    kableExtra,
+    knitr,
     lubridate,
     purrr,
     tidyr
