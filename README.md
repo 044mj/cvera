@@ -80,3 +80,10 @@ results in
 <img src="man/figures/README-example_ouput-1.png" width="100%" />
 
 Interactive herd plot:
+
+``` r
+p <- herd_plot(master_tb, "x1234567") #fake herd
+p
+```
+
+<img src="C:/Users/jamie_m/Documents/myRpackage/cvera/data/herd_plot_figure.png" title="Herd plot" alt="Herd plot" width="100%" />
