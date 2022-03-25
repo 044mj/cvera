@@ -67,7 +67,7 @@ cases_example
 ```
 
 
-Interactive herd plot:
+## Interactive herd plot:
 
 
 ```{r herd_plot_out, eval = F, echo = T}
@@ -75,8 +75,8 @@ p <- herd_plot(master_tb, "x1234567") #fake herd
 p
 ```
 
-```{r herdplotfigure, echo = F, eval = T, include=T, warning = F, out.width="100%", out.width="100%", fig.cap = "Herd plot"}
-knitr::include_graphics(paste0(getwd(), "/data/herd_plot_figure.png")) #works in chunk but not when you render
+```{r herdplotfigure, echo = F, eval = T, include=T, warning = F, error=F, out.width="100%", out.width="100%", fig.cap = "Herd plot"}
+knitr::include_graphics("data/herd_plot_figure.png") #works in chunk but not when you render
 #knitr::include_graphics(path.expand("~/data/historic_gif_eamonn.png"))
 ```
 
