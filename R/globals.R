@@ -1,3 +1,5 @@
 utils::globalVariables(c(".", "bTB positive cases", "gif_actual_date",
                          "gif_cases", "skin_fixed_test_date",
-  "test_date_lab",  "total_reactor_skin", "total_reactor_slaughter", "value"))
+  "test_date_lab",  "total_reactor_skin", "total_reactor_slaughter", "value",
+  "bd_no", "bd_yes", "ends", "fixed_test_date", "herd_no", "indicator1",
+  "starts", "test_type", "total_animals", "total_inconclusive"))
