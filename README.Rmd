@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 ---
 
-`cvera` is an R package with a collection of utility R functions that can be useful to explore Irish bTB datasets collated in CVERA.
+`cvera` is an R package with a collection of utility R functions, useful in exploring Irish bTB datasets collated in CVERA.
 
 ---
 
@@ -44,7 +44,7 @@ library(tidyverse)
 # if using readr::read_csv() they use first 1000 rows to guess type. 
 # If the first 1,000 are missing, it will default to logical. GIF variables are missing in the first 1000
 #because it only came in during May 2019 so include col_types for these variables:
-master_tb <- read_csv("N:/data/tb/master_tb_data_jamie_m/year_2022/master_tb_15_Mar_2022.csv", 
+master_tb <- read_csv("N:/data/tb/master_tb_data_jamie_m/year_2022/master_tb_24_Mar_2022.csv", 
                           col_types = cols(.default = "?", 
                                            gif8d_actual_date = col_date(), 
                                            gif_cases = col_number()))
@@ -67,10 +67,18 @@ cases_example
 ```
 
 
+Interactive herd plot:
 
 
+```{r herd_plot_out, eval = F, echo = FALSE}
+p <- herd_plot(master_tb, "x1234567") #fake herd
+p
+```
 
-
+```{r herdplotfigure, echo = F, eval = T, include=F, warning = F, out.width="100%", out.width="100%", fig.cap = "Herd plot"}
+knitr::include_graphics(paste0(getwd(), "/data/herd_plot_figure.png")) #works in chunk but not when you render
+#knitr::include_graphics(path.expand("~/data/historic_gif_eamonn.png"))
+```
 
 
 
