@@ -35,7 +35,7 @@ library(tidyverse)
 # if using readr::read_csv() they use first 1000 rows to guess type. 
 # If the first 1,000 are missing, it will default to logical. GIF variables are missing in the first 1000
 #because it only came in during May 2019 so include col_types for these variables:
-master_tb <- read_csv("N:/data/tb/master_tb_data_jamie_m/year_2022/master_tb_24_Mar_2022.csv", 
+master_tb <- read_csv("data/master_tb_24_Mar_2022.csv", 
                           col_types = cols(.default = "?", 
                                            gif_actual_date = col_date(), 
                                            gif_cases = col_number(),
