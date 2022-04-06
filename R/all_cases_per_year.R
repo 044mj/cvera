@@ -95,7 +95,7 @@ all_cases_per_year <- function(df, drop_years = NA, return_plot_table = c("both"
     scale_color_nejm() +
     labs(x = "Year", y = "Number of cases", title =
            paste0("bTB cases by year (", min_year, " - ", max_year, ")"),
-         caption = "Plot developed from AHCS data supplied to CVERA.\nTotal cases = GIF + skin + slaughter.\nFigures are an approximation to DAFM figures and there may be minor discrepancies (e.g. date of detection if diagnosed by more than one method).\nGIF cases prior to May 2019 were interpreted as skin cases.") +
+         caption = "Plot developed from various AHCS data sources supplied to CVERA.\nTotal cases = GIF + skin + slaughter.\nFigures are an approximation to DAFM figures and there may be minor discrepancies (e.g. date of detection if diagnosed by more than one method).\nGIF cases prior to May 2019 were interpreted as skin cases.") +
     theme(axis.text = element_text(size = 12, face = "bold", colour = "black"),
           axis.title = element_text(size = 14, face = "bold", colour = "black")) +
     scale_y_continuous(breaks = seq(0, max_val, by = 5000))
