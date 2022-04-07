@@ -28,7 +28,7 @@ bd_during <- function(df, day_to_check, format = "%Y-%m-%d") {
     df[paste0("bd_during_", names(day_var))] <-
       lapply(day_var, function(x) dplyr::if_else(data.table::between(x, ifelse(is.na(df$bd_start), lubridate::date(df$bd_end), lubridate::date(df$bd_start)),
                                                                      ifelse(is.na(df$bd_end), lubridate::date(df$bd_start), lubridate::date(df$bd_end)),
-                                                                     NAbounds = NA), 1, 0, as.numeric(NA)))}
+                                                                     NAbounds = TRUE), 1, 0, as.numeric(NA)))}
   else {
     stop("Date supplied is not valid or incorrect format")}
   df
