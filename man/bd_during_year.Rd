@@ -7,15 +7,15 @@
 bd_during_year(df, years_to_check)
 }
 \arguments{
-\item{df}{BD dataset}
+\item{df}{BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))}
 
 \item{years_to_check}{years to check if herd was in a BD during this time.}
 }
 \value{
-returns new column in BD dataset.
+returns new column(s) in BD dataset.
 }
 \description{
-\code{top} is a small function to not just present the first rows
+\code{top}  Check what herds were in BD in a particular year
 }
 \details{
 DETAILS
@@ -23,7 +23,7 @@ DETAILS
 \examples{
 \dontrun{
 if(interactive()){
-newdf <- bd_during_year(bd_test, years_to_check = c(2005))
-newdf <- bd_during_year(bd_test, years_to_check = c(2005:2006)) }
+newdf <- bd_during_year(bd_df, years_to_check = c(2005))
+newdf <- bd_during_year(bd_df, years_to_check = c(2005:2006)) }
 }
 }

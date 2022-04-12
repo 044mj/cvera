@@ -7,7 +7,7 @@
 bd_during(df, day_to_check, format = "\%Y-\%m-\%d")
 }
 \arguments{
-\item{df}{BD dataset}
+\item{df}{BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))}
 
 \item{day_to_check}{date to check if herd was in a BD during this time}
 
@@ -17,7 +17,7 @@ bd_during(df, day_to_check, format = "\%Y-\%m-\%d")
 returns new column in BD dataset.
 }
 \description{
-\code{top} is a small function to not just present the first rows
+\code{top} Check what herds were in BD on a particular date.
 }
 \details{
 DETAILS
@@ -25,7 +25,7 @@ DETAILS
 \examples{
 \dontrun{
 if(interactive()){
- #bd_test <- bd_during(bd_test, "2017-02-27")
+ #bd_check <- bd_during(bd_df, "2017-02-27")
  }
 }
 }

@@ -1,6 +1,6 @@
 #' @title bd_during
-#' @description \code{top} is a small function to not just present the first rows
-#' @param df BD dataset
+#' @description \code{top} Check what herds were in BD on a particular date.
+#' @param df BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))
 #' @param day_to_check date to check if herd was in a BD during this time
 #' @param format date format, Default: '%Y-%m-%d'
 #' @return returns new column in BD dataset.
@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  #bd_test <- bd_during(bd_test, "2017-02-27")
+#'  #bd_check <- bd_during(bd_df, "2017-02-27")
 #'  }
 #' }
 #' @export

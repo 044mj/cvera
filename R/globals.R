@@ -2,4 +2,9 @@ utils::globalVariables(c(".", "bTB positive cases", "gif_actual_date",
                          "gif_cases", "skin_fixed_test_date",
   "test_date_lab",  "total_reactor_skin", "total_reactor_slaughter", "value",
   "bd_no", "bd_yes", "ends", "fixed_test_date", "herd_no", "indicator1",
-  "starts", "test_type", "total_animals", "total_inconclusive"))
+  "starts", "test_type", "total_animals", "total_inconclusive",
+  "bd_duration_days", "bd_end", "bd_start", "county", "dvo",
+  "first_test_type", "herd_type",
+  "lab_or_skin", "test_skin_lab_year", "total_clear",
+  "total_reactor_permit_lesions", "total_standard_reactor",
+  "total_standard_reactor_lesions"))

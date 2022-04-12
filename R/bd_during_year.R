@@ -1,16 +1,16 @@
 #' @title bd_during_year
-#' @description \code{top} is a small function to not just present the first rows
-#' @param df BD dataset
+#' @description \code{top}  Check what herds were in BD in a particular year
+#' @param df BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))
 #' @param years_to_check years to check if herd was in a BD during this time.
-#' @return returns new column in BD dataset.
+#' @return returns new column(s) in BD dataset.
 #' @details DETAILS
 #'
 #'
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#' newdf <- bd_during_year(bd_test, years_to_check = c(2005))
-#' newdf <- bd_during_year(bd_test, years_to_check = c(2005:2006)) }
+#' newdf <- bd_during_year(bd_df, years_to_check = c(2005))
+#' newdf <- bd_during_year(bd_df, years_to_check = c(2005:2006)) }
 #' }
 #' @export
 #' @importFrom data.table between

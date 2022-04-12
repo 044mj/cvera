@@ -23,6 +23,7 @@ Imports:
     lubridate,
     plotly,
     purrr,
+    sjlabelled,
     tidyr
 URL: https://github.com/044mj/cvera
 BugReports: https://github.com/044mj/cvera/issues
