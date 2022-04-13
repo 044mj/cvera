@@ -3,7 +3,7 @@
 #' @param df BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))
 #' @param day_to_check date to check if herd was in a BD during this time
 #' @param format date format, Default: '%Y-%m-%d'
-#' @return returns new column in BD dataset.
+#' @return returns new indicator column in BD dataset (0 = not in BD, 1 = in BD).
 #' @details DETAILS
 #'
 #'

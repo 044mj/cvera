@@ -2,7 +2,7 @@
 #' @description \code{top}  Check what herds were in BD in a particular year
 #' @param df BD dataset (bd_df). Created using bd_dataset_fun (bd_df <- bd_dataset_fun(master_tb))
 #' @param years_to_check years to check if herd was in a BD during this time.
-#' @return returns new column(s) in BD dataset.
+#' @return returns new indicator column(s) in BD dataset (0 = not in BD, 1 = in BD).
 #' @details DETAILS
 #'
 #'
