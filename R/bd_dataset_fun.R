@@ -46,6 +46,7 @@ bd_dataset_fun <- function(df) {
 
               #index results
               no_animals_index_test = first(total_animals),
+              no_inconclusive_index_test = first(total_inconclusive),
               no_skin_reactor_index_test = first(total_reactor_skin),
               no_slaughter_reactor_index_test = first(total_reactor_slaughter),  #this should be the same as slaughter, no?
               no_standard_reactor_index_test = first(total_standard_reactor),
@@ -91,11 +92,12 @@ bd_dataset_fun <- function(df) {
       mean_total_clear = "Average total clear over all tests",
       total_animals = "Total animals skin tested during BD (could be repeat counting)",
       total_clear = "Total animals clear skin tested during BD (could be repeat counting)",
-      total_inconclusive = "Total inconclusive animals skin tested during BD",
+      total_inconclusive = "Total inconclusive animals skin tested during BD (could be repeat counting)",
       total_reactor_slaughter = "Total reactors detected at slaughter",
       total_non_permit_animal_lesion = "Total reactors with lesions without permit",
       gif_cases = "Total GIF cases (only after May 2019)",
       no_animals_index_test = "Number of animal at index test",
+      no_inconclusive_index_test = "Number of inconclusive at index test",
       no_skin_reactor_index_test = "Number of skin reactors at index test",
       no_slaughter_reactor_index_test = "Number of TB positive animals detected at/near index test",
       no_standard_reactor_index_test = "Number of standard reactors at index test",
