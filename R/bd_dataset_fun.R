@@ -56,6 +56,7 @@ bd_dataset_fun <- function(df) {
               county = first(county)
 
     ) %>%
+    ungroup() %>%
     bind_cols(., {bd_only %>%
         group_by(herd_no, bd_no) %>%
         #maybe next year change gif_cases to NA if before 2019?
