@@ -7,4 +7,5 @@ utils::globalVariables(c(".", "bTB positive cases", "gif_actual_date",
   "first_test_type", "herd_type",
   "lab_or_skin", "test_skin_lab_year", "total_clear",
   "total_reactor_permit_lesions", "total_standard_reactor",
-  "total_standard_reactor_lesions"))
+  "total_standard_reactor_lesions", "trading_status",
+  "total_non_permit_animal_lesion" ))

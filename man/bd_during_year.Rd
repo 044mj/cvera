@@ -12,7 +12,7 @@ bd_during_year(df, years_to_check)
 \item{years_to_check}{years to check if herd was in a BD during this time.}
 }
 \value{
-returns new column(s) in BD dataset.
+returns new indicator column(s) in BD dataset (0 = not in BD, 1 = in BD).
 }
 \description{
 \code{top}  Check what herds were in BD in a particular year

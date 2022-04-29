@@ -88,3 +88,23 @@ p
 ```
 
 <img src="data/herd_plot_figure.png" title="Herd plot" alt="Herd plot" width="100%" />
+
+## Create BD file - summary of all BDs
+
+``` r
+bd_df <- bd_dataset_fun(master_tb)
+```
+
+# Check if BD occured during particular years
+
+``` r
+bd_df <- bd_during_year(bd_df, years_to_check = c(2005:2006))
+```
+
+# Helper function to select core variables
+
+``` r
+master_tb %>%
+ filter(total_reactor_skin > 10) %>%
+ core_vars(county)
+```

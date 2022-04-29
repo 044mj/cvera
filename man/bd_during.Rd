@@ -14,7 +14,7 @@ bd_during(df, day_to_check, format = "\%Y-\%m-\%d")
 \item{format}{date format, Default: '\%Y-\%m-\%d'}
 }
 \value{
-returns new column in BD dataset.
+returns new indicator column in BD dataset (0 = not in BD, 1 = in BD).
 }
 \description{
 \code{top} Check what herds were in BD on a particular date.

@@ -82,5 +82,25 @@ knitr::include_graphics("data/herd_plot_figure.png") #works in chunk but not whe
 ```
 
 
+## Create BD file - summary of all BDs 
+
+```{r bd_file_test, eval = F, echo = T}
+bd_df <- bd_dataset_fun(master_tb)
+```
+
+# Check if BD occured during particular years
+
+```{r bd_during_test, eval = F, echo = T}
+bd_df <- bd_during_year(bd_df, years_to_check = c(2005:2006))
+```
+
+# Helper function to select core variables
+```{r core_select_test, eval = F, echo = T}
+master_tb %>%
+ filter(total_reactor_skin > 10) %>%
+ core_vars(county)
+```
+
+
 
 
