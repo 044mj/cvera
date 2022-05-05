@@ -115,10 +115,16 @@ bd_dataset_fun <- function(df) {
            all_cases = total_reactor_skin + ifelse(is.na(total_reactor_slaughter), 0, total_reactor_slaughter) + gif_cases,
            bd_duration_days = bd_end - bd_start,
            bd_duration_yrs = round((bd_duration_days/365), digits = 1)) %>%
+
+    group_by(herd_no) %>%
+    mutate(duration_between_bd = bd_start - lag(bd_end)) %>%
+    ungroup() %>%
+
     sjlabelled::var_labels(
       all_cases ="Total/All reactors (skin + slaughter + gif)",
       bd_duration_days = "Duration of BD in days",
-      bd_duration_yrs = "Duration of BD in years")
+      bd_duration_yrs = "Duration of BD in years",
+      duration_between_bd = "Duration between consecutive BDs" )
 
   bd_test
 
