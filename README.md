@@ -108,3 +108,9 @@ master_tb %>%
  filter(total_reactor_skin > 10) %>%
  core_vars()
 ```
+
+## Create indicator variable if herd had BD within e.g. 365 days prior to current one
+
+``` r
+bd_df <- bd_within_time_period(bd_df, 2016, 730)
+```

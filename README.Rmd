@@ -101,6 +101,11 @@ master_tb %>%
  core_vars()
 ```
 
+## Create indicator variable if herd had BD within e.g. 365 days prior to current one
+
+```{r bd_within_time_period_test, eval = F, echo = T}
+bd_df <- bd_within_time_period(bd_df, 2016, 730)
+```
 
 
 
