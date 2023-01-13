@@ -5,6 +5,7 @@
 #' @param start_date start date of plot search. Format, '%Y-%m-%d'. Default is NULL so all years are plotted.
 #' @param end_date end date of plot search. Format, '%Y-%m-%d'. Default is NULL so all years are plotted.
 #' @param format date format, Default: '%Y-%m-%d'
+#' @param plotly_output Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.
 
 #' @return returns new column in BD dataset.
 #' @details DETAILS
@@ -23,7 +24,8 @@
 #' @importFrom cowplot theme_cowplot background_grid
 #'
 
-herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL, format = "%Y-%m-%d") {
+herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL, format = "%Y-%m-%d",
+                      plotly_output = TRUE) {
 
   if (nchar(herd_no_character) != 8) {
     stop("Invalid herd number supplied (not equal to 8 characters in length)")} else {
@@ -97,17 +99,28 @@ herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL,
               inherit.aes = FALSE,
               #fill = df2$colour_me,
               alpha = 0.6) +
-    geom_line(data = herd_df, aes(x = fixed_test_date, y = total_animals, group = 1,
-                                  text = paste0('Skin test date: ', skin_fixed_test_date, "<br>",
-                                                #format(skin_fixed_test_date, "%d/%m/%Y"),  "<br>",
-                                                'Skin test type: ', test_type,  "<br>",
-                                                'BD start date (fixed_test_date): ', fixed_test_date,  "<br>",
-                                                'Total animals tested: ', total_animals, "<br>",
-                                                'Total reactors: ', total_reactor_skin, "<br>",
-                                                'Total inconclusives: ', total_inconclusive, "<br>",
-                                                'Total slaughter cases: ', total_reactor_slaughter, "<br>",
-                                                'Total GIF cases: ', gif_cases, "<br>",
-                                                'GIF date: ', gif_actual_date, "<br>"))) +
+    geom_line(data = herd_df, aes(x = fixed_test_date, y = total_animals)) +
+
+    #geom_point added 10/01/23
+    geom_point(data = herd_df, aes(x = fixed_test_date, y = total_animals, group = 1,
+                                   text = paste0('Skin test date: ', skin_fixed_test_date, "<br>",
+                                                 #format(skin_fixed_test_date, "%d/%m/%Y"),  "<br>",
+                                                 'Skin test type: ', test_type,  "<br>",
+                                                 'BD start date (fixed_test_date): ', fixed_test_date,  "<br>",
+                                                 'Total animals tested: ', total_animals, "<br>",
+                                                 'Total reactors: ', total_reactor_skin, "<br>",
+                                                 'Total inconclusives: ', total_inconclusive, "<br>",
+                                                 'Total slaughter cases: ', total_reactor_slaughter, "<br>",
+                                                 'Total GIF cases: ', gif_cases, "<br>",
+                                                 'GIF date: ', gif_actual_date, "<br>"))) +
+    #adding in all TB cases on graph too 10/01/23, adding in buffer so data can be seen i.e. line width size
+    geom_segment(data = herd_df %>%
+                   mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)),
+                 aes(x = fixed_test_date, xend = fixed_test_date, y = 0, yend = all_cases), color = "#f4a261", size = 1) +
+    geom_point(data = herd_df %>%
+                 mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)), aes(x = fixed_test_date, y = all_cases, group = 1,
+                                                                                text = paste0('No of bTB cases: ', all_cases, "<br>")), color = "#f4a261", size = 1.5) +
+
     #geom_ribbon(aes(ymin = 0, ymax = total_animals, fill = bd_yes), color = NA, alpha = 0.2) +
     #ggplot2::scale_fill_brewer(name = "",#"Trading status"
     #                           palette = "Dark2") +
@@ -130,20 +143,61 @@ herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL,
                         "\n Total no. of BDs: ", no_of_breakdowns)) +
     #geom_label_repel(aes(label = test_type), size = 7, max.overlaps = Inf) +
     theme_cowplot() +
-    background_grid()
-  #gg
-  #ggplotly(gg)
-  myggplotly <- ggplotly(gg, tooltip = c("text"))
-  #myggplotly
-  for (i in 1:length(myggplotly$x$data)){
-    if (!is.null(myggplotly$x$data[[i]]$name)){
-      myggplotly$x$data[[i]]$name = gsub('^\\(|,\\d+\\)$', '', myggplotly$x$data[[i]]$name)
+    background_grid() +
+    theme(axis.line.y.right = element_line(color = "#f4a261"),
+          axis.ticks.y.right = element_line(color = "#f4a261"),
+          axis.text.y.right = element_text(color = "#f4a261"),
+          axis.title.y.right = element_text(color = "#f4a261")
+    )
+
+
+  #plotly or ggplot output
+  if (plotly_output == TRUE) {
+    plt <- ggplotly(gg)
+    #extract range and tick values for yaxis2
+    yaxis2_range <- plt$x$layout$yaxis$range
+    yaxis2_tickvals <- plt$x$layout$yaxis$tickvals
+
+    #create info for yaxis2
+    ay <- list(
+      overlaying = "y",
+      side = "right",
+      title = "No of bTB cases",
+      color = "#f4a261",
+      #add in values from above
+      range = yaxis2_range,
+      tickvals =  yaxis2_tickvals
+    )
+
+    myggplotly <- ggplotly(gg, tooltip = c("text"))
+    for (i in 1:length(myggplotly$x$data)) {
+      if (!is.null(myggplotly$x$data[[i]]$name)) {
+        myggplotly$x$data[[i]]$name = gsub('^\\(|,\\d+\\)$', '', myggplotly$x$data[[i]]$name)
+      }
     }
+    ggplotly(myggplotly) %>%
+      add_lines(x = ~fixed_test_date, y = ~total_animals, colors = NULL, yaxis = "y2",
+                data = herd_df, showlegend = FALSE, inherit = FALSE) %>%
+      layout(yaxis2 = ay,
+             legend = list(title = list(text = "Trading status \nGIF/Lab detection")))
+
+  } else if (plotly_output == FALSE) {
+    gg
   }
 
-  ggplotly(myggplotly) %>%
-    #config(displayModeBar = F) %>%
-    layout(legend = list(title = list(text = "Trading status \nGIF/Lab detection")))
+  #gg
+  #ggplotly(gg)
+  # myggplotly <- ggplotly(gg, tooltip = c("text"))
+  # #myggplotly
+  # for (i in 1:length(myggplotly$x$data)){
+  #   if (!is.null(myggplotly$x$data[[i]]$name)){
+  #     myggplotly$x$data[[i]]$name = gsub('^\\(|,\\d+\\)$', '', myggplotly$x$data[[i]]$name)
+  #   }
+  # }
+  #
+  # ggplotly(myggplotly) %>%
+  #   #config(displayModeBar = F) %>%
+  #   layout(legend = list(title = list(text = "Trading status \nGIF/Lab detection")))
 
 
 }
