@@ -116,12 +116,18 @@ herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL,
                                                  'Total GIF cases: ', gif_cases, "<br>",
                                                  'GIF date: ', gif_actual_date, "<br>"))) +
     #adding in all TB cases on graph too 10/01/23, adding in buffer so data can be seen i.e. line width size
-    geom_segment(data = herd_df %>%
-                   mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)),
-                 aes(x = fixed_test_date, xend = fixed_test_date, y = 0, yend = all_cases), color = "#f4a261", size = 1) +
-    geom_point(data = herd_df %>%
-                 mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)), aes(x = fixed_test_date, y = all_cases, group = 1,
-                                                                                text = paste0('No of bTB cases: ', all_cases, "<br>")), color = "#f4a261", size = 1.5) +
+    #if statement to test to see if herd has any bTB cases
+    #(if not (zero on every row, returns all NA which causes
+    #Error: Discrete value supplied to continuous scale)
+    {if (sum(herd_df$all_cases) > 0)
+      list(
+        geom_segment(data = herd_df %>%
+                       mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)),
+                     aes(x = fixed_test_date, xend = fixed_test_date, y = 0, yend = all_cases), color = "#f4a261", size = 1),
+        geom_point(data = herd_df %>%
+                     mutate(all_cases = ifelse(all_cases == 0, NA, all_cases)), aes(x = fixed_test_date, y = all_cases, group = 1,
+                                                                                    text = paste0('No of bTB cases: ', all_cases, "<br>")), color = "#f4a261", size = 1.5)
+      )} +
 
     #geom_ribbon(aes(ymin = 0, ymax = total_animals, fill = bd_yes), color = NA, alpha = 0.2) +
     #ggplot2::scale_fill_brewer(name = "",#"Trading status"
