@@ -53,7 +53,7 @@ cases <- all_cases_per_year(master_tb, drop_years = c(2022))
 results in
 
     #> [[1]]
-    #> # A tibble: 17 x 5
+    #> # A tibble: 17 × 5
     #>     year skin_test_reactors slaughter_detected gif_cases all_cases
     #>    <int>              <dbl>              <int>     <int>     <dbl>
     #>  1  2005              25975               2709        NA     28684
@@ -87,7 +87,7 @@ p <- herd_plot(master_tb, "x1234567") #fake herd
 p
 ```
 
-<img src="data/herd_plot_figure.png" title="Herd plot" alt="Herd plot" width="100%" />
+<img src="data/herd_plot_figure_2.png" title="Herd plot" alt="Herd plot" width="100%" />
 
 ## Create BD file - summary of all BDs
 

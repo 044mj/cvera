@@ -17,6 +17,8 @@
 #' p
 #' p <- herd_plot(master_tb, "x1234567", start_date = "2010-01-01")
 #' p
+#' p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE) #static plot
+#' p
 #'  }
 #' }
 #' @export
