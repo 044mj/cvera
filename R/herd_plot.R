@@ -34,6 +34,10 @@ herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL,
       message("Correct herd number length")
     }
 
+  if (herd_no_character %in% df$herd_no == FALSE) {
+    stop("Invalid herd number supplied (herd number is not in the dataset)")} else {
+      message("Herd number is contained in dataset")
+    }
 
   #search by dates if included
   if (is.null(start_date) & is.null(end_date)) {
