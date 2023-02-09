@@ -9,7 +9,8 @@ herd_plot(
   herd_no_character,
   start_date = NULL,
   end_date = NULL,
-  format = "\%Y-\%m-\%d"
+  format = "\%Y-\%m-\%d",
+  plotly_output = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ herd_plot(
 \item{end_date}{end date of plot search. Format, '\%Y-\%m-\%d'. Default is NULL so all years are plotted.}
 
 \item{format}{date format, Default: '\%Y-\%m-\%d'}
+
+\item{plotly_output}{Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.}
 }
 \value{
 returns new column in BD dataset.
@@ -38,6 +41,8 @@ if(interactive()){
 p <- herd_plot(master_tb, "x1234567")
 p
 p <- herd_plot(master_tb, "x1234567", start_date = "2010-01-01")
+p
+p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE) #static plot
 p
  }
 }
