@@ -10,7 +10,8 @@ herd_plot(
   start_date = NULL,
   end_date = NULL,
   format = "\%Y-\%m-\%d",
-  plotly_output = TRUE
+  plotly_output = TRUE,
+  alternative_herd_no_name = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ herd_plot(
 \item{format}{date format, Default: '\%Y-\%m-\%d'}
 
 \item{plotly_output}{Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.}
+
+\item{alternative_herd_no_name}{If you want to change the herd_no in title to something else}
 }
 \value{
 returns new column in BD dataset.
@@ -43,6 +46,8 @@ p
 p <- herd_plot(master_tb, "x1234567", start_date = "2010-01-01")
 p
 p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE) #static plot
+p
+p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE, alternative_herd_no_name = "other name/number")
 p
  }
 }

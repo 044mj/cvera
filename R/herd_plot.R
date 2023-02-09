@@ -6,6 +6,7 @@
 #' @param end_date end date of plot search. Format, '%Y-%m-%d'. Default is NULL so all years are plotted.
 #' @param format date format, Default: '%Y-%m-%d'
 #' @param plotly_output Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.
+#' @param alternative_herd_no_name If you want to change the herd_no in title to something else
 #' @return returns new column in BD dataset.
 #' @details DETAILS
 #'
@@ -18,6 +19,8 @@
 #' p
 #' p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE) #static plot
 #' p
+#' p <- herd_plot(master_tb, "x1234567", plotly_output = FALSE, alternative_herd_no_name = "other name/number")
+#' p
 #'  }
 #' }
 #' @export
@@ -26,7 +29,7 @@
 #'
 
 herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL, format = "%Y-%m-%d",
-                      plotly_output = TRUE) {
+                      plotly_output = TRUE, alternative_herd_no_name = NULL) {
 
   if (nchar(herd_no_character) != 8) {
     stop("Invalid herd number supplied (not equal to 8 characters in length)")} else {
@@ -85,7 +88,11 @@ herd_plot <- function(df, herd_no_character, start_date = NULL, end_date = NULL,
   max_no_animals <- max(herd_df$total_animals)
   # values = alpha(c("#8B3A62", "#6DBCC3"), .25),
   # labels = c("COVID-19", "Normal"),
-  herd_number <- herd_df$herd_no[1]
+  if (!is.null(alternative_herd_no_name)) {
+    herd_number <- alternative_herd_no_name
+  } else if (is.null(alternative_herd_no_name)) {
+    herd_number <- herd_df$herd_no[1]
+  }
   no_of_breakdowns <- max(herd_df$bd_no, na.rm = T)
 
   #get palette colours from ggsci
