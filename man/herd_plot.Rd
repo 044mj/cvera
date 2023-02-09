@@ -27,7 +27,7 @@ herd_plot(
 
 \item{plotly_output}{Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.}
 
-\item{alternative_herd_no_name}{If you want to change the herd_no in title to something else}
+\item{alternative_herd_no_name}{If you want to change the herd_no in title to something else.}
 }
 \value{
 returns new column in BD dataset.
