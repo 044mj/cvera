@@ -6,7 +6,6 @@
 #' @param end_date end date of plot search. Format, '%Y-%m-%d'. Default is NULL so all years are plotted.
 #' @param format date format, Default: '%Y-%m-%d'
 #' @param plotly_output Decide whether plot output is static or interactive. Default is TRUE which returns interactive plotly graph.
-
 #' @return returns new column in BD dataset.
 #' @details DETAILS
 #'
